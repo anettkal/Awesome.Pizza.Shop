@@ -7,6 +7,33 @@ class PizzaShop:
 
     def choose_next_option(self):
         print("Welcome!")
+        self.view_menu()
+
+    def build_pizza(self):
+        pizza_margherita = MargheritaPizza()
+        pizza_mushroom = MushroomPizza()
+        pizza_four_cheese = FourCheesePizza()
+        pizza_ham_mushroom = HamMushroomPizza()
+        pizza_seafood = SeafoodPizza()
+        pizza_list = [pizza_margherita, pizza_mushroom,
+                      pizza_four_cheese, pizza_ham_mushroom, pizza_seafood]
+        return pizza_list
+
+    def view_selection(self):
+        print("Do you want to view pizza selection" +
+              " or make own AWESOME pizza?")
+        select = input("Press 1, for pizza selection, press 2," +
+                       "to make own Awesome pizza.\n")
+        if select == '1':
+            pizza_list = self.build_pizza()
+            for pizza in pizza_list:
+                print(pizza.to_string())
+        elif select == '2':
+            pass
+        else:
+            self.view_selection()
+
+    def view_menu(self):
         while True:
             option = input("Menu\n" +
                            "Choose 1, 2, 3 for the following options:\n" +
@@ -18,33 +45,12 @@ class PizzaShop:
             if option == '1':
                 print(self.name + self.address + self.opening_time)
             elif option == '2':
-                print("Do you want to view pizza selection" +
-                      " or make own AWESOME pizza?")
-                select = input("Press 1, for pizza selection, press 2," +
-                               "to make own Awesome pizza.\n")
-                if select == '1':
-                    pizza_list = self.build_pizza()
-                    for pizza in pizza_list:
-                        print(pizza.to_string())
+                self.view_selection()
             elif option == '3':
                 print("Goodbye! See you next time.")
                 break
             else:
                 self.choose_next_option()
-
-    def build_pizza(self):
-        pizza_margherita = MargheritaPizza()
-        pizza_mushroom = MushroomPizza()
-        pizza_four_cheese = FourCheesePizza()
-        pizza_ham_mushroom = HamMushroomPizza()
-        pizza_seafood = SeafoodPizza()
-        pizza_list = []
-        pizza_list.append(pizza_margherita)
-        pizza_list.append(pizza_mushroom)
-        pizza_list.append(pizza_four_cheese)
-        pizza_list.append(pizza_ham_mushroom)
-        pizza_list.append(pizza_seafood)
-        return pizza_list
 
 
 class Pizza:
@@ -70,30 +76,30 @@ class Pizza:
 
 class MargheritaPizza(Pizza):
     def __init__(self):
-        Pizza.__init__(self, "Pizza Margarita", "tomato sauce, cheese", 7)
+        Pizza.__init__(self, "1) Pizza Margarita", "tomato sauce, cheese", 7)
 
 
 class MushroomPizza(Pizza):
     def __init__(self):
-        Pizza.__init__(self, "Pizza Funghi", "tomato sauce," +
+        Pizza.__init__(self, "2) Pizza Funghi", "tomato sauce," +
                        "cheese, mushrooms", 9)
 
 
 class FourCheesePizza(Pizza):
     def __init__(self):
-        Pizza.__init__(self, "Pizza Quattro Formaggi", "emmental," +
+        Pizza.__init__(self, "3) Pizza Quattro Formaggi", "emmental," +
                        "mozzarella, gorgonzola, parmigiano", 12)
 
 
 class HamMushroomPizza(Pizza):
     def __init__(self):
-        Pizza.__init__(self, "Pizza Prosciutto e Funghi",
+        Pizza.__init__(self, "4) Pizza Prosciutto e Funghi",
                        "tomato sauce, mushrooms, ham, cheese", 10)
 
 
 class SeafoodPizza(Pizza):
     def __init__(self):
-        Pizza.__init__(self, "Pizza Frutti di Mare", "tomato sauce," +
+        Pizza.__init__(self, "5) Pizza Frutti di Mare", "tomato sauce," +
                        "clams, mussels, prawns", 13)
 
 
